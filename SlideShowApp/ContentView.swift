@@ -1,24 +1,26 @@
-//
-//  ContentView.swift
-//  SlideShowApp
-//
-//  Created by kenichi nakamura on 2026/06/06.
-//
-
 import SwiftUI
+import Photos
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @StateObject private var settings = SlideShowSettings()
+    @StateObject private var vm: SlideShowViewModel
 
-#Preview {
-    ContentView()
+    init() {
+        let s = SlideShowSettings()
+        _settings = StateObject(wrappedValue: s)
+        _vm = StateObject(wrappedValue: SlideShowViewModel(settings: s))
+    }
+
+    var body: some View {
+        SlideShowView(vm: vm)
+            .sheet(isPresented: $vm.showPicker) {
+                SmartPhotoPickerView { assets in
+                    vm.showPicker = false
+                    Task { await vm.loadAssets(assets) }
+                }
+            }
+            .sheet(isPresented: $vm.showSettings) {
+                SettingsView(settings: settings)
+            }
+    }
 }
