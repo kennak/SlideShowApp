@@ -87,11 +87,11 @@
 				};
 			};
 			buildConfigurationList = DA60D4892FD3E88700C9B58F /* Build configuration list for PBXProject "SlideShowApp" */;
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ja,
 			);
 			mainGroup = DA60D4852FD3E88700C9B58F;
 			minimizedProjectReferenceProxies = 1;
