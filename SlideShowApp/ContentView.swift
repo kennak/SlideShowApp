@@ -13,6 +13,13 @@ struct ContentView: View {
 
     var body: some View {
         SlideShowView(vm: vm)
+            .task {
+                // 起動時：フォトライブラリへのアクセス権があれば前回の状態を復元
+                let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+                if status == .authorized || status == .limited {
+                    await vm.restoreSessionIfNeeded()
+                }
+            }
             .sheet(isPresented: $vm.showPicker) {
                 SmartPhotoPickerView { assets in
                     vm.showPicker = false

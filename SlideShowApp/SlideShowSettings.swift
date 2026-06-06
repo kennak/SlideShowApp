@@ -34,49 +34,51 @@ enum PlayMode: String, CaseIterable, Identifiable {
 }
 
 // MARK: - UserDefaults キー
-private enum Keys {
+enum UDKeys {
+    // 設定
     static let displayDuration    = "displayDuration"
     static let videoDuration      = "videoDuration"
     static let transitionType     = "transitionType"
     static let transitionDuration = "transitionDuration"
     static let playMode           = "playMode"
+    // 再生状態
+    static let assetIdentifiers   = "assetIdentifiers"   // [String]
+    static let currentIndex       = "currentIndex"       // Int
 }
 
 // MARK: - 設定モデル（UserDefaults で永続化）
 class SlideShowSettings: ObservableObject {
 
     @Published var displayDuration: Double {
-        didSet { UserDefaults.standard.set(displayDuration, forKey: Keys.displayDuration) }
+        didSet { UserDefaults.standard.set(displayDuration, forKey: UDKeys.displayDuration) }
     }
     @Published var videoDuration: Double {
-        didSet { UserDefaults.standard.set(videoDuration, forKey: Keys.videoDuration) }
+        didSet { UserDefaults.standard.set(videoDuration, forKey: UDKeys.videoDuration) }
     }
     @Published var transitionType: TransitionType {
-        didSet { UserDefaults.standard.set(transitionType.rawValue, forKey: Keys.transitionType) }
+        didSet { UserDefaults.standard.set(transitionType.rawValue, forKey: UDKeys.transitionType) }
     }
     @Published var transitionDuration: Double {
-        didSet { UserDefaults.standard.set(transitionDuration, forKey: Keys.transitionDuration) }
+        didSet { UserDefaults.standard.set(transitionDuration, forKey: UDKeys.transitionDuration) }
     }
     @Published var playMode: PlayMode {
-        didSet { UserDefaults.standard.set(playMode.rawValue, forKey: Keys.playMode) }
+        didSet { UserDefaults.standard.set(playMode.rawValue, forKey: UDKeys.playMode) }
     }
 
     init() {
         let ud = UserDefaults.standard
+        displayDuration    = ud.object(forKey: UDKeys.displayDuration)    as? Double ?? 15.0
+        videoDuration      = ud.object(forKey: UDKeys.videoDuration)      as? Double ?? 15.0
+        transitionDuration = ud.object(forKey: UDKeys.transitionDuration) as? Double ?? 1.0
 
-        // 保存値があればそれを使用、なければデフォルト値
-        displayDuration = ud.object(forKey: Keys.displayDuration) as? Double ?? 15.0
-        videoDuration   = ud.object(forKey: Keys.videoDuration)   as? Double ?? 15.0
-        transitionDuration = ud.object(forKey: Keys.transitionDuration) as? Double ?? 1.0
-
-        if let raw = ud.string(forKey: Keys.transitionType),
+        if let raw = ud.string(forKey: UDKeys.transitionType),
            let saved = TransitionType(rawValue: raw) {
             transitionType = saved
         } else {
             transitionType = .crossFade
         }
 
-        if let raw = ud.string(forKey: Keys.playMode),
+        if let raw = ud.string(forKey: UDKeys.playMode),
            let saved = PlayMode(rawValue: raw) {
             playMode = saved
         } else {
