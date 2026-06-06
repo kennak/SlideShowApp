@@ -1,0 +1,64 @@
+##
+## .gitignore
+## distortion_app
+##
+## Created by Tomo Kikuchi on 2022/09/16
+## 
+
+## Xcode git ignore
+
+*.xccheckout
+*.xcscmblueprint
+
+build/
+DerivedData/
+
+UserInterfaceState.xcuserstate
+
+xcuserdata/
+*.moved-aside
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+*.hmap
+
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Pods & Carthage
+
+Pods/
+Carthage/Build/
+
+## fastlane
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## macOS
+
+.DS_Store
+
+## Gcc
+/*.gcno
+
+Builds/
+.vscode/
+naEffectPlugin/Builds/
+*/Builds/
+*/vscode/
