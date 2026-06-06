@@ -1,0 +1,38 @@
+/* Album list */
+"albums.title" = "Albums";
+"album.item.count" = "%d items";
+"album.fallback.title" = "Album";
+
+/* Asset grid */
+"grid.select.all" = "Select All";
+"grid.deselect.all" = "Deselect All";
+"grid.add.button" = "Add (%d)";
+"grid.cancel" = "Cancel";
+
+/* Slideshow */
+"slideshow.empty.message" = "Select photos or videos to get started";
+"slideshow.empty.button" = "Open Albums";
+"slideshow.counter" = "%d / %d";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.done" = "Done";
+"settings.section.playmode" = "Play Mode";
+"settings.section.duration" = "Display Duration";
+"settings.section.transition" = "Transition";
+"settings.photo.duration" = "Photo Display Duration";
+"settings.video.duration" = "Max Video Duration";
+"settings.transition.type" = "Type";
+"settings.transition.duration" = "Transition Duration";
+"settings.duration.unit" = "s";
+"settings.video.footer" = "If a video is shorter than the max duration, it will pause on the last frame until the time is up.";
+
+/* Play mode */
+"playmode.sequential" = "Sequential";
+"playmode.loop" = "Loop";
+"playmode.random" = "Random";
+
+/* Transition */
+"transition.crossfade" = "Cross Fade";
+"transition.slide" = "Slide";
+"transition.kenburns" = "Ken Burns";

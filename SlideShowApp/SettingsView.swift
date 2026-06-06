@@ -8,10 +8,10 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 // MARK: - 再生モード
-                Section("再生モード") {
-                    Picker("モード", selection: $settings.playMode) {
+                Section(String(localized: "settings.section.playmode")) {
+                    Picker(String(localized: "settings.section.playmode"), selection: $settings.playMode) {
                         ForEach(PlayMode.allCases) { mode in
-                            Label(mode.rawValue, systemImage: mode.systemImage)
+                            Label(mode.displayName, systemImage: mode.systemImage)
                                 .tag(mode)
                         }
                     }
@@ -21,54 +21,53 @@ struct SettingsView: View {
                 // MARK: - 表示時間
                 Section {
                     durationRow(
-                        title: "写真の表示時間",
+                        title: String(localized: "settings.photo.duration"),
                         icon: "photo",
                         value: $settings.displayDuration,
                         range: 3...60
                     )
                     durationRow(
-                        title: "動画の最大表示時間",
+                        title: String(localized: "settings.video.duration"),
                         icon: "video",
                         value: $settings.videoDuration,
                         range: 3...60
                     )
                 } header: {
-                    Text("表示時間")
+                    Text(String(localized: "settings.section.duration"))
                 } footer: {
-                    Text("動画が最大表示時間より短い場合は、終了後に静止して残り時間を待ちます。")
+                    Text(String(localized: "settings.video.footer"))
                 }
 
                 // MARK: - トランジション
-                Section("トランジション") {
-                    Picker("種類", selection: $settings.transitionType) {
+                Section(String(localized: "settings.section.transition")) {
+                    Picker(String(localized: "settings.transition.type"), selection: $settings.transitionType) {
                         ForEach(TransitionType.allCases) { type in
-                            Label(type.rawValue, systemImage: type.systemImage)
+                            Label(type.displayName, systemImage: type.systemImage)
                                 .tag(type)
                         }
                     }
                     .pickerStyle(.inline)
 
                     durationRow(
-                        title: "切り替え時間",
+                        title: String(localized: "settings.transition.duration"),
                         icon: "clock",
                         value: $settings.transitionDuration,
                         range: 0.3...2.0,
                         step: 0.1,
-                        unit: "秒"
+                        unit: String(localized: "settings.duration.unit")
                     )
                 }
             }
-            .navigationTitle("設定")
+            .navigationTitle(String(localized: "settings.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("完了") { dismiss() }
+                    Button(String(localized: "settings.done")) { dismiss() }
                 }
             }
         }
     }
 
-    // MARK: - Helper
     @ViewBuilder
     private func durationRow(
         title: String,
@@ -76,7 +75,7 @@ struct SettingsView: View {
         value: Binding<Double>,
         range: ClosedRange<Double>,
         step: Double = 1.0,
-        unit: String = "秒"
+        unit: String = "s"
     ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Label(title, systemImage: icon)
@@ -84,7 +83,7 @@ struct SettingsView: View {
                 Slider(value: value, in: range, step: step)
                 Text(String(format: step < 1 ? "%.1f\(unit)" : "%.0f\(unit)", value.wrappedValue))
                     .monospacedDigit()
-                    .frame(width: 52, alignment: .trailing)
+                    .frame(width: 56, alignment: .trailing)
             }
         }
         .padding(.vertical, 4)

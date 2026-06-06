@@ -2,11 +2,19 @@ import Foundation
 import Combine
 
 enum TransitionType: String, CaseIterable, Identifiable {
-    case crossFade = "クロスフェード"
-    case slide     = "スライド"
-    case kenBurns  = "ケン・バーンズ"
+    case crossFade
+    case slide
+    case kenBurns
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .crossFade: return String(localized: "transition.crossfade")
+        case .slide:     return String(localized: "transition.slide")
+        case .kenBurns:  return String(localized: "transition.kenburns")
+        }
+    }
 
     var systemImage: String {
         switch self {
@@ -18,11 +26,19 @@ enum TransitionType: String, CaseIterable, Identifiable {
 }
 
 enum PlayMode: String, CaseIterable, Identifiable {
-    case sequential = "順番"
-    case loop       = "ループ"
-    case random     = "ランダム"
+    case sequential
+    case loop
+    case random
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .sequential: return String(localized: "playmode.sequential")
+        case .loop:       return String(localized: "playmode.loop")
+        case .random:     return String(localized: "playmode.random")
+        }
+    }
 
     var systemImage: String {
         switch self {
@@ -33,20 +49,16 @@ enum PlayMode: String, CaseIterable, Identifiable {
     }
 }
 
-// MARK: - UserDefaults キー
 enum UDKeys {
-    // 設定
     static let displayDuration    = "displayDuration"
     static let videoDuration      = "videoDuration"
     static let transitionType     = "transitionType"
     static let transitionDuration = "transitionDuration"
     static let playMode           = "playMode"
-    // 再生状態
-    static let assetIdentifiers   = "assetIdentifiers"   // [String]
-    static let currentIndex       = "currentIndex"       // Int
+    static let assetIdentifiers   = "assetIdentifiers"
+    static let currentIndex       = "currentIndex"
 }
 
-// MARK: - 設定モデル（UserDefaults で永続化）
 class SlideShowSettings: ObservableObject {
 
     @Published var displayDuration: Double {

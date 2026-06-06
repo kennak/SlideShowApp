@@ -1,0 +1,38 @@
+/* アルバム一覧 */
+"albums.title" = "アルバム";
+"album.item.count" = "%d件";
+"album.fallback.title" = "アルバム";
+
+/* アセットグリッド */
+"grid.select.all" = "全選択";
+"grid.deselect.all" = "全解除";
+"grid.add.button" = "追加 (%d)";
+"grid.cancel" = "キャンセル";
+
+/* スライドショー */
+"slideshow.empty.message" = "写真・動画を選択してください";
+"slideshow.empty.button" = "アルバムを開く";
+"slideshow.counter" = "%d / %d";
+
+/* 設定 */
+"settings.title" = "設定";
+"settings.done" = "完了";
+"settings.section.playmode" = "再生モード";
+"settings.section.duration" = "表示時間";
+"settings.section.transition" = "トランジション";
+"settings.photo.duration" = "写真の表示時間";
+"settings.video.duration" = "動画の最大表示時間";
+"settings.transition.type" = "種類";
+"settings.transition.duration" = "切り替え時間";
+"settings.duration.unit" = "秒";
+"settings.video.footer" = "動画が最大表示時間より短い場合は、終了後に静止して残り時間を待ちます。";
+
+/* 再生モード */
+"playmode.sequential" = "順番";
+"playmode.loop" = "ループ";
+"playmode.random" = "ランダム";
+
+/* トランジション */
+"transition.crossfade" = "クロスフェード";
+"transition.slide" = "スライド";
+"transition.kenburns" = "ケン・バーンズ";

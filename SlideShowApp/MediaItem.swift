@@ -40,9 +40,9 @@ actor AssetLoader {
             opts.resizeMode = .exact
 
             // 画面サイズに合わせた解像度（フルサイズは不要）
-            let scale  = UIScreen.main.scale
-            let size   = CGSize(width: UIScreen.main.bounds.width  * scale,
-                                height: UIScreen.main.bounds.height * scale)
+            // UIScreen.main は iOS16以降非推奨のため、固定の高解像度サイズを使用
+            // 実際の表示はscaledToFitで調整されるため、2048pxで十分な品質
+            let size   = CGSize(width: 2048, height: 2048)
 
             PHImageManager.default().requestImage(
                 for: asset, targetSize: size,
