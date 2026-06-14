@@ -26,6 +26,11 @@ actor AssetLoader {
         case .image:
             return await loadPhoto(asset: asset)
         case .video:
+            // スロー動画（可変フレームレート）は AVComposition で返され
+            // AVURLAsset へのキャストが失敗するため、サムネイルを写真として扱う
+            if asset.mediaSubtypes.contains(.videoHighFrameRate) {
+                return await loadPhoto(asset: asset)
+            }
             return await loadVideo(asset: asset)
         default:
             return nil
